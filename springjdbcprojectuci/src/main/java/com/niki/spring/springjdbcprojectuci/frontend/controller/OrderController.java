@@ -66,13 +66,18 @@ public class OrderController {
 		return "order/addOrder";
 	}
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String addOrderSave(@Valid Orders order, BindingResult bindingResult) {
+	public ModelAndView addOrderSave(@Valid Orders order, BindingResult bindingResult) {
+		ModelAndView modelandview = new ModelAndView();
 		System.out.println("=== in addOrderSave");
 		if(bindingResult.hasErrors()) {
-			return "order/addOrder";
+			modelandview.setViewName("order/orderError");
+			//return "order/addOrder";
 		}
 		catalogService.insertOrder(order);
-		return "redirect:/order/list";
+		modelandview.addObject("order",order);
+		modelandview.setViewName("order/orderResult");
+	//	return "redirect:/order/list";
+		return modelandview;
 	}
 	
 }

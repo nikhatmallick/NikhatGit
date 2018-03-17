@@ -8,10 +8,14 @@ order List Name
 <div>
 
 	<c:forEach var="ordName" items="${usernameList}">
-				<li>	<a href="/listUserNames/${username}.html"></a><c:out value="${ordName}" /></a></li>
+				<li>	<a href="/listUserNames/${ordName}.html"><c:out value="${ordName}" /></a></li>
 				<br>
 			</c:forEach>
 </div>
 <a href="add.html"> Add new order</a>
 </body>
 </html>
+
+<!-- <a href="view.html?product_id=${prod.product_id}">
+					<c:out value="${prod.product_name}" />
+				</a> -->
