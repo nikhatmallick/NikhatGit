@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Lab_3.1.3_Stereotypes
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Owner
+Implementation-Vendor-Id: Lab_3.1.3_Stereotypes
+Build-Jdk: 1.8.0_162
+Implementation-URL: http://projects.spring.io/spring-boot/Lab_3.1.3_St
+ ereotypes/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

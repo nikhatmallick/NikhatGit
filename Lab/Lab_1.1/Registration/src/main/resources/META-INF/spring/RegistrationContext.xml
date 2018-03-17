@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean id="courseSpringFW"
+      class="com.uciext.springfw.class01.courses.model.Course">
+      <property name="courseId" value="X104" /> 
+      <property name="courseName" value="Spring Framework" /> 
+  </bean>
+
+  <bean id="courseJavaWS"
+      class="com.uciext.springfw.class01.courses.model.Course">
+      <property name="courseId" value="X106" /> 
+      <property name="courseName" value="Java Web Services" /> 
+  </bean>
+
+  <bean id="courseService"
+      class="com.uciext.springfw.class01.courses.service.impl.CourseServiceImpl">
+      <property name="course1" ref="courseSpringFW" />       
+      <property name="course2" ref="courseJavaWS" />       
+  </bean>
+
+</beans>

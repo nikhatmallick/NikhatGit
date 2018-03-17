@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-aop-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-aop-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-aop-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-aspects-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-aspects-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-aspects-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-beans-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-beans-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-beans-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-context-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-context-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-context-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-context-support-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-context-support-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-context-support-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-core-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-core-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-core-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-expression-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-expression-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-expression-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-instrument-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-instrument-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-instrument-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-instrument-tomcat-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-instrument-tomcat-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-instrument-tomcat-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-jdbc-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-jdbc-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-jdbc-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-jms-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-jms-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-jms-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-messaging-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-messaging-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-messaging-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-orm-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-orm-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-orm-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-oxm-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-oxm-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-oxm-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-test-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-test-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-test-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-tx-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-tx-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-tx-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-web-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-web-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-web-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-webmvc-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-webmvc-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-webmvc-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-webmvc-portlet-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-webmvc-portlet-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-webmvc-portlet-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-websocket-4.1.6.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-websocket-4.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="/SpringLearn/lib/springjar/libs/spring-websocket-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

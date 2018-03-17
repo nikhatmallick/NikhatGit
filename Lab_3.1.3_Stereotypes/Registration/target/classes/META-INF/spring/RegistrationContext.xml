@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.uciext" />
+
+<!-- 
+    <bean 
+        class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+-->
+
+	<bean id="courseJ110" 
+    	class="com.uciext.springfw.class03.courses.model.CourseJava">
+    	<property name="courseId" value="J110" /> 
+    	<property name="courseName" value="Java Programming" /> 
+  	</bean>
+
+	<bean id="courseJ112" 
+    	class="com.uciext.springfw.class03.courses.model.CourseJava">
+    	<property name="courseId" value="J112" /> 
+    	<property name="courseName" value="Advanced Java Programming" /> 
+  	</bean>
+
+	<bean id="courseJ140" 
+    	class="com.uciext.springfw.class03.courses.model.CourseJava">
+    	<property name="courseId" value="J140" /> 
+    	<property name="courseName" value="J2EE" /> 
+  	</bean>
+
+	<bean id="courseN201" 
+    	class="com.uciext.springfw.class03.courses.model.CourseDotNet">
+    	<property name="courseId" value="N201" /> 
+    	<property name="courseName" value="ASP .Net" /> 
+  	</bean>
+
+	<bean id="courseN203" 
+    	class="com.uciext.springfw.class03.courses.model.CourseDotNet">
+    	<property name="courseId" value="N203" /> 
+    	<property name="courseName" value="C#" /> 
+  	</bean>
+
+	<bean id="courseO140" 
+    	class="com.uciext.springfw.class03.courses.model.CourseOOP">
+    	<property name="courseId" value="O140" /> 
+    	<property name="courseName" value="Basics of OOP" /> 
+  	</bean>
+
+	<bean id="courseO144" 
+    	class="com.uciext.springfw.class03.courses.model.CourseOOP">
+    	<property name="courseId" value="O144" /> 
+    	<property name="courseName" value="Advanced OOP" /> 
+  	</bean>
+
+	<bean id="courseJ310" 
+    	class="com.uciext.springfw.class03.courses.model.CourseJEE">
+    	<property name="courseId" value="J310" /> 
+    	<property name="courseName" value="EJB" /> 
+  	</bean>
+
+
+	<bean id="courseService"
+    	class="com.uciext.springfw.class03.courses.service.impl.CourseServiceImpl">
+    	<property name="courses">
+        	<map> 
+        		<entry key="J110" value-ref="courseJ110" /> 
+        		<entry key="J112" value-ref="courseJ112" /> 
+        		<entry key="J140" value-ref="courseJ140" /> 
+            	<entry key="N201" value-ref="courseN201" /> 
+            	<entry key="N203" value-ref="courseN203" /> 
+            	<entry key="O140" value-ref="courseO140" /> 
+            	<entry key="O144" value-ref="courseO144" /> 
+            	<entry key="J310" value-ref="courseJ310" /> 
+        	</map>
+       	</property> 
+  	</bean>
+</beans>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
+
+	<bean id="product_01" class="com.uciext.springfw.hw.catalog.model.Product">
+		<constructor-arg type="java.lang.String" value="0596009208" />
+		<constructor-arg type="java.lang.String" value="Head First Java" />
+		<constructor-arg type="java.lang.String" value="ea" />
+		<constructor-arg type="java.lang.Float" value="26.07F" />
+		<constructor-arg type="java.lang.Integer" value="22" />
+	</bean>
+
+	<bean id="product_02" class="com.uciext.springfw.hw.catalog.model.Product">
+		<constructor-arg type="java.lang.String" value="1935182358" />
+		<constructor-arg type="java.lang.String" value="Spring in Action" />
+		<constructor-arg type="java.lang.String" value="ea" />
+		<constructor-arg type="java.lang.Float" value="31.66" />
+		<constructor-arg type="java.lang.Integer"
+			value="#{product_01.availableQuantity * 2}" />
+	</bean>
+
+	<bean id="product_03" class="com.uciext.springfw.hw.catalog.model.Product">
+		<property name="sku" value="B00IPFBMS6" />
+		<property name="name" value="Professional Java for Web Applications" />
+		<property name="unitOfMeasure" value="ea" />
+		<property name="price" value="38.99" />
+		<property name="availableQuantity" value="12" />
+	</bean>
+
+	<bean id="product_04" class="com.uciext.springfw.hw.catalog.model.Product">
+		<property name="sku" value="C033983MS1" />
+		<property name="name"
+			value="#{'Package: ' + product_01.name + ' + ' + product_03.name}" />
+		<property name="unitOfMeasure" value="ea" />
+		<property name="price" value="51.00" />
+		<property name="availableQuantity" value="8" />
+	</bean>
+
+	<bean id="catalog" class="com.uciext.springfw.hw.catalog.model.Catalog">
+		<property name="catalogName" value="Java Books" />
+		<property name="lastUpdateDate" value="06/05/2014" />
+		<property name="products">
+			<map>
+				<entry key="#{product_01.sku}" value-ref="product_01" />
+				<entry key="#{product_02.sku}" value-ref="product_02" />
+				<entry key="#{product_03.sku}" value-ref="product_03" />
+				<entry key="#{product_04.sku}" value-ref="product_04" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="catalogService"
+		class="com.uciext.springfw.hw.catalog.service.impl.CatalogServiceImpl">
+		<property name="catalog" ref="catalog" />
+	</bean>
+
+	<bean id="myLogger" class="com.uciext.springfw.hw.common.MyLogger"></bean>
+
+	<aop:config>
+		<aop:aspect ref="myLogger">
+			<aop:pointcut id="getproductPointcut"
+				expression="execution(* com.uciext.springfw.hw.catalog.service.impl.CatalogServiceImpl.getProduct(String)) and args(sku)" />
+
+			<aop:before pointcut-ref="getproductPointcut" method="logBeforeGetProd" arg-names="joinPoint, sku"/>
+
+			<aop:pointcut id="getproductPointcut2"
+				expression="execution(* com.uciext.springfw.hw.catalog.service.impl.CatalogServiceImpl.getProduct(String)) and args(sku)" />
+			<aop:after pointcut-ref="getproductPointcut2" method="logAfterGetProd"  arg-names="joinPoint, sku"/>
+
+			<aop:pointcut id="addproductPointcut"
+				expression="execution( * com.uciext.springfw.hw.catalog.service.impl.CatalogServiceImpl.addProduct(..)) and args(ex)" />
+
+			<aop:after-throwing pointcut-ref="addproductPointcut"
+				method="logExceptionProdAdd"  arg-names="joinPoint, ex"/>
+		</aop:aspect>
+	</aop:config>
+
+</beans>

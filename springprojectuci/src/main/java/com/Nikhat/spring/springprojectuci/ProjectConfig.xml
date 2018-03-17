@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+	 http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+<tx:annotation-driven/>
+
+	<context:component-scan
+		base-package="com.Nikhat.spring.springprojectuci.catalog" />
+
+	<bean id="projectDS"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:mem:db;DB_CLOSE_DELAY=-1" />
+		<property name="username" value="sa" />
+		<property name="password" value="sa" />
+	</bean>
+	<bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		name="sessionFactory" p:dataSource-ref="projectDS">
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.Nikhat.spring.springprojectuci.catalog.model.Catalog
+				</value>
+			</list>
+		</property>
+	</bean>
+	<bean class="org.springframework.orm.hibernate5.HibernateTemplate"
+		name="hibernateTemplate" p:sessionFactory-ref="sessionFactory" />
+
+	<!-- bean id="registrationDS" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
+		name="url" value="jdbc:mysql://localhost:3306/registrationdb" /> <property 
+		name="username" value="root" /> <property name="password" value="" /> </bean> -->
+
+	<bean id="h2Server" class="org.h2.tools.Server" factory-method="createTcpServer"
+		init-method="start" destroy-method="stop" depends-on="h2WebServer">
+		<constructor-arg value="-tcp,-tcpAllowOthers,-tcpPort,9095" />
+	</bean>
+	<bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer"
+		init-method="start" destroy-method="stop">
+		<constructor-arg value="-web,-webAllowOthers,-webPort,8085" />
+	</bean>
+
+	<bean class="org.springframework.orm.hibernate5.HibernateTransactionManager"
+		name="transactionManager" p:sessionFactory-ref="sessionFactory" />
+</beans>

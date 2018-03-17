@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+ 	<bean id="registrationDS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:mem:db;DB_CLOSE_DELAY=-1" />
+		<property name="username" value="sa" />
+    	<property name="password" value="sa" /> 
+	</bean>
+
+ 	<!-- bean id="registrationDS" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/registrationdb" />
+		<property name="username" value="root" />
+    	<property name="password" value="" /> 
+	</bean> -->
+
+	<bean id="h2Server" class="org.h2.tools.Server" factory-method="createTcpServer" init-method="start" destroy-method="stop" depends-on="h2WebServer">
+	    <constructor-arg value="-tcp,-tcpAllowOthers,-tcpPort,9095"/>
+	</bean>
+	<bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
+	    <constructor-arg value="-web,-webAllowOthers,-webPort,8085"/>
+	</bean>
+
+</beans>

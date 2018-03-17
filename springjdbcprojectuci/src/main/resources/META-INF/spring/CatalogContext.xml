@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.niki.spring.springjdbcprojectuci" />
+
+
+	<bean id="catalogDao"
+		class="com.niki.spring.springjdbcprojectuci.catalogs.dao.jdbc.JdbcCatalogDao">
+		<property name="dataSource" ref="projectDS" />
+		<property name="catalogService" ref="catalogService" />
+	</bean>
+	<bean id="ordersDao"
+		class="com.niki.spring.springjdbcprojectuci.catalogs.dao.jdbc.jdbcOrderDao">
+		<property name="dataSource" ref="projectDS" />
+		<property name="catalogService" ref="catalogService" />
+	</bean>
+	<bean id="product_orderDao"
+		class="com.niki.spring.springjdbcprojectuci.catalogs.dao.jdbc.jdbcProduct_OrderDao">
+		<property name="dataSource" ref="projectDS" />
+		<property name="catalogService" ref="catalogService" />
+	</bean>
+
+	<bean id="catalogService" scope="singleton"
+		class="com.niki.spring.springjdbcprojectuci.catalogs.service.impl.CatalogServiceImpl">
+		<property name="catalogDao" ref="catalogDao" />
+		<property name="productDao" ref="productDao" />
+		<property name="ordersDao" ref="ordersDao" />
+		<property name="product_orderDao" ref="product_orderDao" />
+	</bean>
+	<!-- Product wiring -->
+	<bean id="productDao"
+		class="com.niki.spring.springjdbcprojectuci.catalogs.dao.jdbc.jdbcProductDao">
+		<property name="dataSource" ref="projectDS" />
+		<property name="catalogService" ref="catalogService" />
+	</bean>
+
+	<!-- Using JDBC Template for Students data access -->
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="projectDS" />
+	</bean>
+
+</beans>

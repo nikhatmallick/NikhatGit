@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.uciext" />
+
+	<aop:aspectj-autoproxy />
+
+	<bean id="course" 
+    	class="com.uciext.springfw.class04.courses.model.Course"
+    	abstract="true"
+    	>
+    	<property name="maxNameLength" value="${course.name.maxLength}" />
+    	<property name="locale" ref="locale" />
+  	</bean>
+
+	<bean id="courseJ110" parent="course"
+    	class="com.uciext.springfw.class04.courses.model.CourseJava">
+    	<property name="courseId" value="J110" /> 
+    	<property name="courseName" value="Java Programming" /> 
+  	</bean>
+
+	<bean id="courseJ112" parent="course" 
+    	class="com.uciext.springfw.class04.courses.model.CourseJava">
+    	<property name="courseId" value="J112" /> 
+    	<property name="courseName" value="Advanced Java Programming" /> 
+  	</bean>
+
+	<bean id="courseN201" parent="course"
+    	class="com.uciext.springfw.class04.courses.model.CourseDotNet">
+    	<property name="courseId" value="N201" /> 
+    	<property name="courseName" value="ASP .Net" /> 
+  	</bean>
+
+	<bean id="courseN203" parent="course" 
+    	class="com.uciext.springfw.class04.courses.model.CourseDotNet">
+    	<property name="courseId" value="N203" /> 
+    	<property name="courseName" value="C#" /> 
+  	</bean>
+
+	<bean id="courseService" scope="singleton"
+    	class="com.uciext.springfw.class04.courses.service.impl.CourseServiceImpl">
+    	<property name="maxCourses" value="${course.maxCount}" />
+    	<property name="courses">
+        	<map> 
+        		<entry key="J110" value-ref="courseJ110" /> 
+        		<entry key="J112" value-ref="courseJ112" /> 
+            	<entry key="N201" value-ref="courseN201" /> 
+            	<entry key="N203" value-ref="courseN203" /> 
+        	</map>
+       	</property> 
+    	<property name="locale" ref="locale" />
+  	</bean>
+
+	<bean id="departmentService"
+    	class="com.uciext.springfw.class04.courses.service.impl.DepartmentServiceImpl">
+    	<property name="departments">
+        	<map> 
+        		<entry key="departmentJava" value-ref="departmentJava" /> 
+        		<entry key="departmentDotNet" value-ref="departmentDotNet" /> 
+        		<entry key="departmentOOP" value-ref="departmentOOP" /> 
+        	</map>
+       	</property> 
+  	</bean>
+
+    <bean id="propertyConfigurer" 
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="registration.properties" />
+    </bean>
+
+    <bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="registrationMsgs" />
+    </bean>
+
+    <bean id="locale" class="java.util.Locale">
+        <constructor-arg value="en" />
+        <constructor-arg value="US" />
+    </bean>    
+
+    <bean id="myLogger" class="com.uciext.springfw.class04.common.MyLogger" />
+
+</beans>

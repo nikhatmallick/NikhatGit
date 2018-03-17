@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd 
+       ">
+
+    <!-- Instructors -->
+	<bean id="instructorJS" 
+	        class="com.uciext.springfw.class02.courses.model.Instructor">
+    	<property name="firstName" value="John" />       
+    	<property name="lastName" value="Smith" />       
+	</bean>
+
+	<bean id="instructorMW" 
+			class="com.uciext.springfw.class02.courses.model.Instructor">
+    	<property name="firstName" value="Mary" />       
+    	<property name="lastName" value="White" />       
+	</bean>
+
+    <!-- Schedules -->
+	<bean id="schedule14Q1" class="com.uciext.springfw.class02.courses.model.Schedule">
+    	<property name="year" value="2014" />       
+    	<property name="quarter" value="1" />       
+	</bean>
+
+	<bean id="schedule14Q2" class="com.uciext.springfw.class02.courses.model.Schedule">
+    	<property name="year" value="2014" />       
+    	<property name="quarter" value="2" />       
+	</bean>
+
+	<bean id="schedule14Q3" class="com.uciext.springfw.class02.courses.model.Schedule">
+    	<property name="year" value="2014" />       
+    	<property name="quarter" value="3" />       
+	</bean>
+
+	<bean id="schedule14Q4" class="com.uciext.springfw.class02.courses.model.Schedule">
+    	<property name="year" value="2014" />       
+    	<property name="quarter" value="4" />       
+	</bean>
+
+    <!-- Courses -->	
+	<bean id="courseSpringFw"
+    	class="com.uciext.springfw.class02.courses.model.Course">
+      	<constructor-arg type="java.lang.String" value="X104" /> 
+      	<constructor-arg type="java.lang.String" value="Spring Framework" />
+      	<constructor-arg ref="instructorJS" />
+    	<property name="schedules">
+        	<list> 
+        		<ref bean="schedule14Q1" />  
+        		<ref bean="schedule14Q2" />  
+        		<ref bean="schedule14Q3" />  
+        		<ref bean="schedule14Q4" />  
+        	</list>
+       	</property> 
+  	</bean>
+
+  	<bean id="courseJavaWS"
+      	class="com.uciext.springfw.class02.courses.model.Course">
+      	<property name="courseId" value="X106" /> 
+      	<property name="courseName" value="Java Web Services" />
+      	<property name="instructor" ref="instructorJS" /> 
+    	<property name="schedules">
+        	<list> 
+        		<ref bean="schedule14Q1" />  
+        		<ref bean="schedule14Q3" />  
+        	</list>
+       	</property> 
+  	</bean>
+
+	<bean id="courseJSF"
+    	class="com.uciext.springfw.class02.courses.model.Course">
+      	<constructor-arg type="java.lang.String" value="X108" /> 
+      	<constructor-arg type="java.lang.String" value="JSF" />
+      	<constructor-arg ref="instructorMW" />
+    	<property name="schedules">
+        	<list> 
+        		<ref bean="schedule14Q2" />  
+        		<ref bean="schedule14Q4" />  
+        	</list>
+       	</property> 
+  	</bean>
+
+  	<bean id="courseEJB"
+      	class="com.uciext.springfw.class02.courses.model.Course">
+      	<property name="courseId" value="X110" /> 
+      	<property name="courseName" value="EJB" /> 
+      	<property name="instructor" ref="instructorMW" /> 
+    	<property name="schedules"><null /></property> 
+  	</bean>
+
+    <!-- Course Service -->
+	<bean id="courseService"
+    	class="com.uciext.springfw.class02.courses.service.impl.CourseServiceImpl">
+    	<property name="courses">
+        	<map> 
+        		<entry key="X104" value-ref="courseSpringFw" /> 
+            	<entry key="X108" value-ref="courseJSF" /> 
+            	<entry key="X106" value-ref="courseJavaWS" /> 
+            	<entry key="X110" value-ref="courseEJB" /> 
+        	</map>
+       	</property> 
+  	</bean>
+  	
+  	<!-- Messages -->
+	<bean id="courseMessages" scope="prototype"
+    	class="com.uciext.springfw.class02.courses.CourseMessages">
+    	<property name="messages">
+        	<props> 
+        		<prop key="msgCourseCount">There are #{courseService.courses.size()} courses.</prop> 
+            	<prop key="msgCourseX104Instructor">The instructor for course #{courseService.getCourse('X104').courseName} is #{courseService.getCourse('X104').instructor.firstName + ' ' + courseService.getCourse('X104').instructor.lastName}.</prop> 
+            	<prop key="msgCourseX106Instructor">The instructor for course #{courseService.courses['X106'].courseName} is #{courseService.courses['X106'].instructor.firstName + ' ' + courseService.courses['X106'].instructor.lastName}.</prop> 
+                <prop key="msgX110ScheduleCount">Course X110 has #{courseService.courses['X110'].schedules==null?0:courseService.courses['X110'].schedules.size()} schedules.</prop>
+            	<prop key="msgTotalSchedules">There are total of #{courseService.courses['X104'].schedules.size() + courseService.courses['X106'].schedules.size() + courseService.courses['X108'].schedules.size()} schedules for all courses.</prop> 
+            	<prop key="msgCourseX104ThoughtByMaryWhite">The course #{courseService.courses['X104'].courseId + '/' + courseService.courses['X104'].courseName} #{courseService.courses['X104'].instructor.firstName == 'Mary' and courseService.courses['X104'].instructor.lastName == 'White'?'is':'is not'} thought by #{instructorMW.print()}.</prop> 
+            	<prop key="msgCourseX108ThoughtByMaryWhite">The course #{courseService.courses['X108'].courseId + '/' + courseService.courses['X108'].courseName} #{courseService.courses['X108'].instructor.firstName == 'Mary' and courseService.courses['X108'].instructor.lastName == 'White'?'is':'is not'} thought by #{instructorMW.print()}.</prop> 
+        	</props>
+       	</property> 
+  	</bean>
+  	
+</beans>
