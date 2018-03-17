@@ -29,7 +29,7 @@ Add New Order:
 </td>
 </tr>
 <tr>
-<th><label for="username"> Unit of Measure:</label></th>
+<th><label for="username"> User Name:</label></th>
 <td><sf:input path="username" size="40" id="username"/><br>
 <sf:errors path="username" cssClass="error" />
 </td>

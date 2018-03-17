@@ -29,6 +29,7 @@ public class jdbcOrderDao implements OrdersDao {
 	private static final String SQL_FIND_ORDER_BY_ID = "select * from orders where order_id = ?";
 	private static final String SQL_DELETE_BY_ID = "DELETE from orders where order_id = ?";
 	private static final String SQL_FIND_ORDER_BY_USERNAME = "select * from orders where username = ?";
+	private static final String SQL_USERNAME = "select distinct username from orders";
 
 	private DataSource dataSource;
 	private CatalogService catalogService;
@@ -171,6 +172,74 @@ public class jdbcOrderDao implements OrdersDao {
 	}
 
 		
+	}
+
+	@Override
+	public List<Orders> findOrdersByUserName(String username) {
+		logger.info("In findOrdersByUserName username=" + username);
+		Connection conn = null;
+		List<Orders> orders = new ArrayList<Orders>();
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(SQL_FIND_ORDER_BY_USERNAME);
+			ps.setString(1,  username);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+			orders.add(	 new Orders(
+						rs.getInt("order_id"), rs.getString("order_created"), 
+								rs.getDouble("order_amount"),rs.getInt("confirm_number"),
+								 rs.getString("username")));
+			}
+			rs.close();
+			ps.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {}
+			}
+		}
+		logger.info("exit findOrders orders.size=" + (orders != null?orders.size():0));
+		return orders;
+	}
+
+	@Override
+	public List<String> getUserName() {
+		logger.info("In findOrdersDistinct UserName");
+		Connection conn = null;
+		List<String> userNameList = new ArrayList<String>();
+ System.out.println("======================IN LIST ALL ORDERS   =========================");
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(SQL_USERNAME);
+			ResultSet rs = ps.executeQuery();
+			System.out.println("all userNameList size: " +rs.getFetchSize());
+			while (rs.next()) {
+				System.out.println(rs.getString("username"));
+				
+				userNameList.add(rs.getString("username"));
+			}
+			rs.close();
+			ps.close();
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} 
+		finally {
+			if (conn != null) {
+				try {
+				conn.close();
+				} catch (SQLException e) {}
+			}
+		}
+		logger.info("exit getUserName userNameList.size=" + (userNameList != null?userNameList.size():0));
+		return userNameList;
 	}
 
 }

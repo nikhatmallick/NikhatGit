@@ -22,7 +22,6 @@ public class CatalogServiceImpl implements CatalogService {
 	ProductDao productDao;
 	OrdersDao ordersDao;
 	Product_OrderDao product_orderDao;
-
 	
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
@@ -115,6 +114,17 @@ public class CatalogServiceImpl implements CatalogService {
 	public void deleteOrder(int order_id) {
 		ordersDao.deleteOrder(order_id);
 	}
+	
+	public List<Orders> findOrdersByUserName(String username){
+		return ordersDao.findOrdersByUserName(username);
+	}
+	
+	@Override
+	public List<String> getUserName() {
+		return ordersDao.getUserName();
+	}
+	
+	//product_order
 
 	@Override
 	public void insertProduct_Order(Product_Order product_order) {
@@ -144,6 +154,4 @@ public class CatalogServiceImpl implements CatalogService {
 
 	
 	
-	
-
 }

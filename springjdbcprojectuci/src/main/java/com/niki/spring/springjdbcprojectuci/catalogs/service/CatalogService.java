@@ -26,6 +26,8 @@ public interface CatalogService {
 	public List<Orders> getOrders();
 	public Orders getOrderById(int order_id);
 	public void deleteOrder(int order_id);
+	public List<Orders> findOrdersByUserName(String username);
+	public List<String> getUserName();
 	//product_order
 	public void insertProduct_Order(Product_Order product_order);
 	public List<Product_Order> getProduct_Orders();

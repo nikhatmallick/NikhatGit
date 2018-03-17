@@ -39,6 +39,7 @@ public class ProductController {
 		model.addAttribute("selectedProducts", new Items());
 		return new ModelAndView("product/productList3");
 	}
+	
 	// Add Product
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addProduct(Model model) {
