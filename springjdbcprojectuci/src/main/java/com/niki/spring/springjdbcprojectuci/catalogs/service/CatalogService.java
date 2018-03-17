@@ -19,6 +19,7 @@ public interface CatalogService {
 	public List<Product> getProducts();
 	public Product getProduct(int product_id);
 	public List<Product> getProductsByCatalog(Catalog catalog);
+	public void deleteProductbyId(int product_id);
 	//order
 	public void insertOrder(Orders order);
 	public List<Orders> getOrders();

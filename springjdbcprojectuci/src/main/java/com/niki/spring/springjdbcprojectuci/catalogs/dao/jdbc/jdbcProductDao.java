@@ -180,5 +180,30 @@ public class jdbcProductDao implements ProductDao {
 		logger.info("exit findProductsByCatalog products.size = " + (products != null? products.size():0));
 		return products;
 	}
+	@Override
+	public void deleteProductbyId(int  product_id) {
+		logger.info("In deleteProductbyId product_id=" + product_id);
+		Connection conn = null;
+		Product product = null;
+		try {
+			conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement(SQL_DELETE_BY_ID);
+			ps.setInt(1,product_id);
+			int flag = ps.executeUpdate();
+			ps.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		finally {
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {}
+			}
+		}
+		logger.info("exit deleteProductbyId  product deleted"  );
+	}
 
 }

@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niki.spring.springjdbcprojectuci.catalogs.model.Catalog;
 import com.niki.spring.springjdbcprojectuci.catalogs.service.CatalogService;
+import com.niki.spring.springjdbcprojectuci.products.model.Items;
 import com.niki.spring.springjdbcprojectuci.products.model.Product;
 
 @Controller
@@ -31,7 +34,9 @@ public class ProductController {
 		System.out.println("======= in productList");
 		List<Product> products = catalogService.getProducts();
 		model.addAttribute("productList", products);
-		return new ModelAndView("product/productList");
+		//return new ModelAndView("product/productList");
+		model.addAttribute("selectedProducts", new Items());
+		return new ModelAndView("product/productList3");
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
@@ -50,5 +55,32 @@ public class ProductController {
 		catalogService.insertProduct(product);
 		return "redirect:/product/list";
 	}
+	// VIEW Product DETAILS
+
+		@RequestMapping("/view")
+		public ModelAndView productView(@RequestParam("product_id") int product_id, Model model) {
+			System.out.println("======= in productView");
+			Product product = catalogService.getProduct(product_id);
+			model.addAttribute("product", product);
+			return new ModelAndView("product/viewProduct");
+		}
+	
+	// DELETE Product
+
+		// After submitting Delete from Product List Form
+		@RequestMapping(value="/list", method=RequestMethod.POST)
+		public String deleteProducts(@ModelAttribute Items selectedProducts) {
+			System.out.println("======= in deleteProducts");
+			for (String prodIdStr : selectedProducts.getItemList()) {
+				System.out.println("delete product id=" + prodIdStr);
+				try { 
+					int prodId = Integer.parseInt(prodIdStr);
+				    catalogService.deleteProductbyId(prodId);
+				}
+				catch (Exception e) {}
+			}
+			return "redirect:/product/list.html";
+		}
+
 	
 }

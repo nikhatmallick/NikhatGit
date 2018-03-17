@@ -131,6 +131,12 @@ public class CatalogServiceImpl implements CatalogService {
 		return product_orderDao.findProduct_OrderById(product_order_id);
 	}
 
+	@Override
+	public void deleteProductbyId(int product_id) {
+		productDao.deleteProductbyId(product_id);
+		
+	}
+
 	
 	
 	

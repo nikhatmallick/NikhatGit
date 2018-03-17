@@ -12,4 +12,5 @@ public interface ProductDao {
 
 	public Product findProductById(int product_id);
 	public List<Product> findProductsByCatalog(Catalog catalog);
+	public void deleteProductbyId(int product_id);
 }
