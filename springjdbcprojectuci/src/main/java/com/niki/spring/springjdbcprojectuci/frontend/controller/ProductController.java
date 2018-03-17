@@ -89,6 +89,7 @@ public class ProductController {
 			System.out.println("======= in editProduct");
 			Product product = catalogService.getProduct(product_id);
 			model.addAttribute("product", product);
+			model.addAttribute("catalogList",catalogService.getCatalogs());
 			return "product/editProduct";
 		}
 		

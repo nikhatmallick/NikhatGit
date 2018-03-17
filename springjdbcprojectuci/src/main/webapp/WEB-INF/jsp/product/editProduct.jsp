@@ -22,6 +22,28 @@
         	<sf:errors path="Product_name" cssClass="error" /> 
     	</td> 
 	</tr> 
+	<tr> 
+		<th><label for="catalog_name">Catalog Name:</label></th>
+    	<td>
+    		<sf:select path="catalog.catalog_id" >
+    		   <sf:options items="${catalogList}" itemLabel="catalog_name" itemValue="catalog_id" />
+    		</sf:select>
+    	</td> 
+	</tr> 
+	<tr> 
+		<th align="left"><label for="sku">sku:</label></th>
+    	<td align="left">
+    	    <sf:input path="sku" id="sku" /><br/>
+        	<sf:errors path="sku" cssClass="error" /> 
+    	</td> 
+	</tr>
+	<tr> 
+		<th align="left"><label for="available_quantity">available_quantity:</label></th>
+    	<td align="left">
+    	    <sf:input path="available_quantity" id="available_quantity" /><br/>
+        	<sf:errors path="available_quantity" cssClass="error" /> 
+    	</td> 
+	</tr>
 	<tr>
 		<th></th>
 		<td><input type="submit" value="Save" /></td>
