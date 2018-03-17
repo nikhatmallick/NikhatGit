@@ -7,7 +7,7 @@
 Product List
 <div>
 <c:forEach var="product" items="${productList}">
-<li><c:out value="${product.product_name}" /></li>
+<li><a href="view.html?product_id=${product.product_id}"><c:out value="${product.product_name}" /></a></li>
 </c:forEach>
 </div>
 <a href="add.html"> Add new product</a>

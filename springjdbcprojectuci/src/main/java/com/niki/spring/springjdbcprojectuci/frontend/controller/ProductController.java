@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +39,7 @@ public class ProductController {
 		model.addAttribute("selectedProducts", new Items());
 		return new ModelAndView("product/productList3");
 	}
-	
+	// Add Product
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addProduct(Model model) {
 		System.out.println("==== in add product");
@@ -79,6 +80,26 @@ public class ProductController {
 				}
 				catch (Exception e) {}
 			}
+			return "redirect:/product/list.html";
+		}
+		// UPDATE PRODUCT
+
+		@RequestMapping(value="/edit/{product_id}", method=RequestMethod.GET)
+		public String editProduct(@PathVariable int product_id, Model model) {
+			System.out.println("======= in editProduct");
+			Product product = catalogService.getProduct(product_id);
+			model.addAttribute("product", product);
+			return "product/editProduct";
+		}
+		
+		@RequestMapping(value="/edit/{product_id}", method=RequestMethod.POST)
+		public String editProductSave(@PathVariable int product_id, 
+				@Valid Product product, BindingResult bindingResult) {
+			System.out.println("======= in editProductSave");
+			if(bindingResult.hasErrors()) {
+				return "product/editProduct";
+			}
+			catalogService.updateProduct(product_id, product);
 			return "redirect:/product/list.html";
 		}
 

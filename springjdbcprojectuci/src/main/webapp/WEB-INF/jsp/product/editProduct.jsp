@@ -4,22 +4,22 @@
 
 <html>
 <head>
-    <title>Edit Department</title>
+    <title>Edit Product</title>
 </head>
 <body>
-    Edit Department Details:
+    Edit Product Details:
 <br>
-<sf:form method="POST" modelAttribute="department">
+<sf:form method="POST" modelAttribute="product">
 <table border="0">
 	<tr> 
-		<th align="left">Department Id:</th>
-    	<td align="left">${department.departmentId}</td> 
+		<th align="left">Product Id:</th>
+    	<td align="left">${product.product_id}</td> 
 	</tr> 
 	<tr> 
-		<th align="left"><label for="department_name">Department Name:</label></th>
+		<th align="left"><label for="product_name">Product Name:</label></th>
     	<td align="left">
-    	    <sf:input path="departmentName" id="department_name" /><br/>
-        	<sf:errors path="departmentName" cssClass="error" /> 
+    	    <sf:input path="Product_name" id="product_name" /><br/>
+        	<sf:errors path="Product_name" cssClass="error" /> 
     	</td> 
 	</tr> 
 	<tr>

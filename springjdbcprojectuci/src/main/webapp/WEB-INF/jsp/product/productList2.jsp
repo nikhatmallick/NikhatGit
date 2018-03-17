@@ -3,13 +3,13 @@
 
 <html>
 <head>
-<title>Department List</title>
+<title>Product List</title>
 </head>
 <body>
-	Departments:
-	<sf:form method="POST" commandName="selectedDepartments" action="list.html">
-		<sf:checkboxes path="itemList" items="${departmentList}" 
-    		itemValue="departmentId" itemLabel="departmentName" />
+	Products:
+	<sf:form method="POST" commandName="selectedProducts" action="list.html">
+		<sf:checkboxes path="itemList" items="${productList}" 
+    		itemValue="product_id" itemLabel="Product_name" />
  		<input type="submit" value="Delete" />
 	</sf:form>
 	<br>

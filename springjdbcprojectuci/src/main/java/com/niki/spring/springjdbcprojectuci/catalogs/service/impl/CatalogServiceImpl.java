@@ -137,6 +137,11 @@ public class CatalogServiceImpl implements CatalogService {
 		
 	}
 
+	@Override
+	public void updateProduct(int product_id, Product product) {
+		productDao.updateProduct(product_id, product);
+	}
+
 	
 	
 	
