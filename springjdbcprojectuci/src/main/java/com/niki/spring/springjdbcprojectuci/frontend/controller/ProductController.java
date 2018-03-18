@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.niki.spring.springjdbcprojectuci.catalogs.model.Catalog;
 import com.niki.spring.springjdbcprojectuci.catalogs.service.CatalogService;
 import com.niki.spring.springjdbcprojectuci.products.model.Items;
+import com.niki.spring.springjdbcprojectuci.products.model.Orders;
 import com.niki.spring.springjdbcprojectuci.products.model.Product;
 
 @Controller
@@ -39,6 +40,52 @@ public class ProductController {
 		model.addAttribute("selectedProducts", new Items());
 		return new ModelAndView("product/productList3");
 	}
+	
+	//product purchase
+	@RequestMapping("/listProducts2Purchase")
+	public ModelAndView productList4(Model model) {
+		System.out.println("======= in productList");
+		List<Product> products = catalogService.getProducts();
+		model.addAttribute("productList", products);
+		//return new ModelAndView("product/productList");
+		model.addAttribute("selectedProducts", new Items());
+		return new ModelAndView("product/productList4");
+	}
+	// After submitting Delete from Department List Form
+	/*@RequestMapping(value="/list", method=RequestMethod.POST)
+	public String deleteDepartments(@ModelAttribute Items selectedDepartments) {
+		System.out.println("======= in deleteDepartments");
+		for (String deptIdStr : selectedDepartments.getItemList()) {
+			System.out.println("delete department id=" + deptIdStr);
+			try { 
+				int deptId = Integer.parseInt(deptIdStr);
+			    courseService.deleteDepartment(deptId);
+			}
+			catch (Exception e) {}
+		}
+		return "redirect:/department/list.html";
+	}*/
+	// Add order
+		@RequestMapping(value="/addOrderPage")
+		public ModelAndView showaddOrderPage( ) {
+			System.out.println("==== in add order form");
+			ModelAndView modelAndView = new ModelAndView();
+			modelAndView.setViewName("addOrder");
+		//	model.addAttribute(new Orders());
+		//	model.addAttribute("productList",catalogService.getProducts());
+			return modelAndView;
+		}
+		@RequestMapping(value="/addOrderPage", method=RequestMethod.POST)
+		public String addOrderSave(@Valid Orders orders, BindingResult bindingResult) {
+			System.out.println("=== in addOrderSave");
+			if(bindingResult.hasErrors()) {
+				return "order/addOrder";
+			}
+			catalogService.insertOrder(orders);
+			//int product_order_id, int order_id, int product_id, Double order_amount
+		//catalogService.insertProduct_Order(0,order.getOrder_id());
+			return "redirect:/order/orderResult";
+		}
 	
 	// Add Product
 	@RequestMapping(value="/add", method=RequestMethod.GET)
@@ -104,6 +151,24 @@ public class ProductController {
 			catalogService.updateProduct(product_id, product);
 			return "redirect:/product/list.html";
 		}
-
-	
+//purchase Product
+		
+		@RequestMapping(value="/purchaseProduct", method=RequestMethod.POST)
+		public String purchaseProducts(@ModelAttribute Items selectedProducts) {
+			System.out.println("======= in purchaseProduct");
+			Product product=null;
+			for (String prodIdStr : selectedProducts.getItemList()) {
+				System.out.println("purchase product id=" + prodIdStr);
+				try { 
+					int prodId = Integer.parseInt(prodIdStr);
+					 product = catalogService.getProduct(prodId);
+					//model.addAttribute("product", product);
+				  //  catalogService.insertOrder(0,);
+					 //   catalogService.insertProduct_Order(new Product_Order(0,));
+				   // catalogService.updateProduct(prodId, product);
+				}
+				catch (Exception e) {}
+			}
+			return "redirect:/product/list.html";
+		}
 }
