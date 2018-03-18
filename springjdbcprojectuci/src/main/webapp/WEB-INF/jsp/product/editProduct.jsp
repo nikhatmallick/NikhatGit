@@ -38,6 +38,13 @@
     	</td> 
 	</tr>
 	<tr> 
+		<th align="left"><label for="uom">Unit of Measure:</label></th>
+    	<td align="left">
+    	    <sf:input path="uom" id="uom" /><br/>
+        	<sf:errors path="uom" cssClass="error" /> 
+    	</td> 
+	</tr>
+	<tr> 
 		<th align="left"><label for="available_quantity">available_quantity:</label></th>
     	<td align="left">
     	    <sf:input path="available_quantity" id="available_quantity" /><br/>

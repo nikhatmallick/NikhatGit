@@ -29,7 +29,7 @@ public class jdbcProductDao implements ProductDao {
 	private static final String SQL_DELETE_BY_ID = "DELETE from product where product_id = ?";
 	private static final String SQL_FIND_PRODUCTS_BY_CATALOG_ID = "select * from product where catalog_id = ?";
 	private static final String SQL_UPDATE_PRODUCT = 
-			"UPDATE product SET catalog_id = ?, sku=?,product_name=?,available_quantity=? uom=?  WHERE product_id = ?";
+			"UPDATE product SET catalog_id = ?, sku=?,product_name=?,available_quantity=?, uom=?  WHERE product_id = ?";
 
 	private DataSource dataSource;
 	public static void setLogger(Logger logger) {
@@ -212,6 +212,7 @@ public class jdbcProductDao implements ProductDao {
 		logger.info("In updateProduct: product_id=" + product_id + ", product=" + product);
 		Connection conn = null;
  
+		System.out.println("jdbc product update info: "+ product);
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(SQL_UPDATE_PRODUCT);

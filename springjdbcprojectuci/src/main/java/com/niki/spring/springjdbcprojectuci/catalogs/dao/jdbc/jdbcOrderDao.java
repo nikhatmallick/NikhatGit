@@ -91,7 +91,7 @@ public class jdbcOrderDao implements OrdersDao {
 						rs.getDouble("order_amount")+ " "+ rs.getInt("confirm_number")+ " "+ rs.getString("username"));
 				
 				orders.add(new Orders(rs.getInt("order_id"), rs.getString("order_created"), 
-						rs.getDouble("order_amount"),rs.getInt("confirm_number"),
+						rs.getInt("order_amount"),rs.getInt("confirm_number"),
 						 rs.getString("username")));
 			}
 			rs.close();
@@ -125,7 +125,7 @@ public class jdbcOrderDao implements OrdersDao {
 			if(rs.next()) {
 				order  = new Orders(
 						rs.getInt("order_id"), rs.getString("order_created"), 
-								rs.getDouble("order_amount"),rs.getInt("confirm_number"),
+								rs.getInt("order_amount"),rs.getInt("confirm_number"),
 								 rs.getString("username"));
 			}
 			rs.close();
@@ -187,7 +187,7 @@ public class jdbcOrderDao implements OrdersDao {
 			if(rs.next()) {
 			orders.add(	 new Orders(
 						rs.getInt("order_id"), rs.getString("order_created"), 
-								rs.getDouble("order_amount"),rs.getInt("confirm_number"),
+								rs.getInt("order_amount"),rs.getInt("confirm_number"),
 								 rs.getString("username")));
 			}
 			rs.close();

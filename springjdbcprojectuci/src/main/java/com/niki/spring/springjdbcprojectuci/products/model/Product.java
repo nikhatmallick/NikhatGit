@@ -74,11 +74,13 @@ public class Product {
 	public void setUom(String uom) {
 		this.uom = uom;
 	}
+
 	@Override
 	public String toString() {
-		return "Product [product_id=" + product_id + ", sku=" + sku + ", product_name="
-				+ product_name + ", available_quantity=" + available_quantity + ", uom=" + uom + "]";
+		return "Product [product_id=" + product_id + ", sku=" + sku + ", product_name=" + product_name
+				+ ", available_quantity=" + available_quantity + ", uom=" + uom + ", catalog=" + catalog + "]";
 	}
+	
 
 
 

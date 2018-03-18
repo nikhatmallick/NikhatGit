@@ -56,11 +56,6 @@ public class ProductController {
 	public ModelAndView Product_OrderPage(@RequestParam("product_id") int product_id, Model model,
 			@Valid Orders orders, BindingResult bindingResult) {
 		System.out.println("======= in ProductOrderForm");
-		//Product product = catalogService.getProduct(product_id);
-	//	catalogService.insertOrder(orders);
-	//	catalogService.insertProduct_Order(new Product_Order(0,orders.getOrder_id(),product_id,orders.getOrder_amount()));
-		//catalogService.updateProduct(product_id, product);
-	//	model.addAttribute("product", product);
 		return new ModelAndView("product/addOrder");
 	}
 	@RequestMapping(value="/addOrder", method=RequestMethod.POST)
@@ -76,7 +71,13 @@ public class ProductController {
 		catalogService.insertOrder(orders);
 		catalogService.insertProduct_Order(new Product_Order(0,orders.getOrder_id(),product_id,orders.getOrder_amount()));
 		Product uProduct = catalogService.getProduct(product_id);
-		uProduct.setAvailable_quantity(uProduct.getAvailable_quantity()-orders.getOrder_amount());
+		System.out.println("the product we want to update is: " + uProduct);
+		System.out.println("order update avaiable quantity: " +  orders.getOrder_amount());
+		int fq = uProduct.getAvailable_quantity()-orders.getOrder_amount();
+		System.out.println("final fq: "+ fq);
+		uProduct.setAvailable_quantity(fq);
+		System.out.println("uProduct: "+ uProduct);
+		catalogService.updateProduct(product_id, uProduct);
 		modelandview.addObject("orders",orders);
 		modelandview.setViewName("order/orderResult");
 	//	return "redirect:/order/list";
@@ -84,20 +85,7 @@ public class ProductController {
 		//return "/order/orderResult";
 	}
 	//works
-	// After submitting Delete from Department List Form
-	/*@RequestMapping(value="/list", method=RequestMethod.POST)
-	public String deleteDepartments(@ModelAttribute Items selectedDepartments) {
-		System.out.println("======= in deleteDepartments");
-		for (String deptIdStr : selectedDepartments.getItemList()) {
-			System.out.println("delete department id=" + deptIdStr);
-			try { 
-				int deptId = Integer.parseInt(deptIdStr);
-			    courseService.deleteDepartment(deptId);
-			}
-			catch (Exception e) {}
-		}
-		return "redirect:/department/list.html";
-	}*/
+	
 	// Add order
 		@RequestMapping(value="/addOrderPage")
 		public ModelAndView showaddOrderPage( ) {
