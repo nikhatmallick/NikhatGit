@@ -64,8 +64,9 @@ public class ProductController {
 		return new ModelAndView("product/addOrder");
 	}
 	@RequestMapping(value="/addOrder", method=RequestMethod.POST)
-	public ModelAndView addProductOrderSave(@Valid Orders orders, BindingResult bindingResult) {
-		System.out.println("=== in addProductSave");
+	public ModelAndView addProductOrderSave(@Valid Orders orders, BindingResult bindingResult,
+			@RequestParam("product_id") int product_id) {
+		System.out.println("=== in addProductSave" + product_id);
 		ModelAndView modelandview = new ModelAndView();
 		if(bindingResult.hasErrors()) {
 			modelandview.setViewName("product/addOrder");
@@ -73,6 +74,9 @@ public class ProductController {
 			return modelandview;
 		}
 		catalogService.insertOrder(orders);
+		catalogService.insertProduct_Order(new Product_Order(0,orders.getOrder_id(),product_id,orders.getOrder_amount()));
+		Product uProduct = catalogService.getProduct(product_id);
+		uProduct.setAvailable_quantity(uProduct.getAvailable_quantity()-orders.getOrder_amount());
 		modelandview.addObject("orders",orders);
 		modelandview.setViewName("order/orderResult");
 	//	return "redirect:/order/list";

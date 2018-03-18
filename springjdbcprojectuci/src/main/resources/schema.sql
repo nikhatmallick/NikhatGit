@@ -28,10 +28,9 @@ CREATE TABLE IF NOT EXISTS product_order (
         product_order_id INT NOT NULL, 
         order_id INT NOT NULL, 
         product_id INT NOT NULL DEFAULT 0, 
-        total_amount INT NOT NULL DEFAULT 0, 
+        order_amount INT NOT NULL DEFAULT 0, 
         PRIMARY KEY (product_order_id),
-        FOREIGN KEY(order_id) REFERENCES orders(order_id),
-        FOREIGN KEY(product_id) REFERENCES product(product_id)
+        FOREIGN KEY(order_id) REFERENCES orders(order_id)
         );
 
         

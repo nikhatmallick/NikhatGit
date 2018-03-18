@@ -54,7 +54,7 @@ public class jdbcProduct_OrderDao implements Product_OrderDao {
 			ps.setInt(1, product_order.getProduct_order_id());
 			ps.setInt(2, product_order.getOrder_id());
 			ps.setInt(3, product_order.getProduct_id());
-			ps.setDouble(4, product_order.getOrder_amount());
+			ps.setInt(4, product_order.getOrder_amount());
 			ps.executeUpdate();
 			ps.close();
 			
@@ -88,7 +88,7 @@ public class jdbcProduct_OrderDao implements Product_OrderDao {
 						rs.getInt("product_id")+ " "+ rs.getDouble("order_amount"));
 				
 				prodords.add(new Product_Order(rs.getInt("product_order_id"), rs.getInt("order_id"), 
-						rs.getInt("product_id"),rs.getDouble("order_amount")));
+						rs.getInt("product_id"),rs.getInt("order_amount")));
 			}
 			rs.close();
 			ps.close();
@@ -122,7 +122,7 @@ public class jdbcProduct_OrderDao implements Product_OrderDao {
 			if(rs.next()) {
 				porder  = new Product_Order(
 						rs.getInt("product_order_id"), rs.getInt("order_id"), 
-								rs.getInt("product_id"),rs.getDouble("order_amount"));
+								rs.getInt("product_id"),rs.getInt("order_amount"));
 			}
 			rs.close();
 			ps.close();

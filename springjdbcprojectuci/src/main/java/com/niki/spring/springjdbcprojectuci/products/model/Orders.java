@@ -5,14 +5,14 @@ import java.util.Date;
 public class Orders {
 	private int order_id;
 	private String order_created;
-	private Double order_amount;
+	private int order_amount;
 	private int confirm_number;
 	private String username;
 
 	public Orders() {
 	
 	}
-	public Orders(int order_id, String order_created, Double order_amount, int confirm_number, String username) {
+	public Orders(int order_id, String order_created, int order_amount, int confirm_number, String username) {
 	//	super();
 		this.order_id = order_id;
 		this.order_created = order_created;
@@ -37,11 +37,11 @@ public class Orders {
 		this.order_created = order_created;
 	}
 
-	public Double getOrder_amount() {
+	public int getOrder_amount() {
 		return order_amount;
 	}
 
-	public void setOrder_amount(Double order_amount) {
+	public void setOrder_amount(int order_amount) {
 		this.order_amount = order_amount;
 	}
 

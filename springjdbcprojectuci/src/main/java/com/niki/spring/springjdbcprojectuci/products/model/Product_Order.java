@@ -4,7 +4,7 @@ public class Product_Order {
 	private int product_order_id;
 	private int order_id;
 	private int product_id;
-	private Double order_amount;
+	private int order_amount;
 
 	public void setProduct_order_id(int product_order_id) {
 		this.product_order_id = product_order_id;
@@ -18,7 +18,7 @@ public class Product_Order {
 		this.product_id = product_id;
 	}
 
-	public void setOrder_amount(Double order_amount) {
+	public void setOrder_amount(int order_amount) {
 		this.order_amount = order_amount;
 	}
 	
@@ -26,7 +26,7 @@ public class Product_Order {
 		
 	}
 
-	public Product_Order(int product_order_id, int order_id, int product_id, Double order_amount) {
+	public Product_Order(int product_order_id, int order_id, int product_id, int order_amount) {
 		//super();
 		this.product_order_id = product_order_id;
 		this.order_id = order_id;
@@ -52,7 +52,7 @@ public class Product_Order {
 		return product_id;
 	}
 
-	public Double getOrder_amount() {
+	public int getOrder_amount() {
 		return order_amount;
 	}
 
