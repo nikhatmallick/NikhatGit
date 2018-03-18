@@ -7,13 +7,13 @@
 </head>
 <body>
 	Products:
-	<sf:form method="POST" commandName="selectedProducts" action="./../order/addOrder.html">
+	<sf:form method="POST" commandName="selectedProducts" >
 		<div>
 			<c:forEach var="prod" items="${productList}">
 				<sf:checkbox path="itemList" value="${prod.product_id}" />
-				<!--  <a href="view.html?product_id=${prod.product_id}">-->
+				  <a href="addOrder.html?product_id=${prod.product_id}">
 					<c:out value="${prod.product_name}" />
-				<!-- </a>  -->
+				 </a>  
 				<br>
 			</c:forEach>
 		</div>

@@ -10,10 +10,10 @@
 </head>
 <body>
 <h2>User Order Successful. <br>Order Details are:</h2>
-<c:out value="${order.order_id }"></c:out><br>
-<c:out value="${order.username }"></c:out><br>
-<c:out value="${order.order_created }"></c:out><br>
-<c:out value="${order.order_amount }"></c:out><br>
-<c:out value="${order.confirm_number }"></c:out><br>
+<c:out value="${orders.order_id }"></c:out><br>
+<c:out value="${orders.username }"></c:out><br>
+<c:out value="${orders.order_created }"></c:out><br>
+<c:out value="${orders.order_amount }"></c:out><br>
+<c:out value="${orders.confirm_number }"></c:out><br>
 </body>
 </html>

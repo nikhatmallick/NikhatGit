@@ -15,7 +15,7 @@
 	<h2><a href="order/list.html">Orders</a></h2><br>
 	<br>
 	<h2><a href="order/listUserNames.html">OrdersUserName</a></h2><br>
-	
+	<h2><a href="product/listProducts2Purchase.html">Purchase Product</a></h2><br>
 
 	
 </body>

@@ -20,6 +20,7 @@ import com.niki.spring.springjdbcprojectuci.catalogs.service.CatalogService;
 import com.niki.spring.springjdbcprojectuci.products.model.Items;
 import com.niki.spring.springjdbcprojectuci.products.model.Orders;
 import com.niki.spring.springjdbcprojectuci.products.model.Product;
+import com.niki.spring.springjdbcprojectuci.products.model.Product_Order;
 
 @Controller
 @RequestMapping("/product")
@@ -51,6 +52,34 @@ public class ProductController {
 		model.addAttribute("selectedProducts", new Items());
 		return new ModelAndView("product/productList4");
 	}
+	@RequestMapping("/addOrder")
+	public ModelAndView Product_OrderPage(@RequestParam("product_id") int product_id, Model model,
+			@Valid Orders orders, BindingResult bindingResult) {
+		System.out.println("======= in ProductOrderForm");
+		//Product product = catalogService.getProduct(product_id);
+	//	catalogService.insertOrder(orders);
+	//	catalogService.insertProduct_Order(new Product_Order(0,orders.getOrder_id(),product_id,orders.getOrder_amount()));
+		//catalogService.updateProduct(product_id, product);
+	//	model.addAttribute("product", product);
+		return new ModelAndView("product/addOrder");
+	}
+	@RequestMapping(value="/addOrder", method=RequestMethod.POST)
+	public ModelAndView addProductOrderSave(@Valid Orders orders, BindingResult bindingResult) {
+		System.out.println("=== in addProductSave");
+		ModelAndView modelandview = new ModelAndView();
+		if(bindingResult.hasErrors()) {
+			modelandview.setViewName("product/addOrder");
+			//return "product/addOrder";
+			return modelandview;
+		}
+		catalogService.insertOrder(orders);
+		modelandview.addObject("orders",orders);
+		modelandview.setViewName("order/orderResult");
+	//	return "redirect:/order/list";
+		return modelandview;
+		//return "/order/orderResult";
+	}
+	//works
 	// After submitting Delete from Department List Form
 	/*@RequestMapping(value="/list", method=RequestMethod.POST)
 	public String deleteDepartments(@ModelAttribute Items selectedDepartments) {

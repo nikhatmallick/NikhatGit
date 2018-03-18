@@ -27,7 +27,7 @@ public class Product_Order {
 	}
 
 	public Product_Order(int product_order_id, int order_id, int product_id, Double order_amount) {
-		super();
+		//super();
 		this.product_order_id = product_order_id;
 		this.order_id = order_id;
 		this.product_id = product_id;

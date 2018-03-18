@@ -62,7 +62,7 @@ public class OrderController {
 	public String addOrder(Model model) {
 		System.out.println("==== in add order");
 		model.addAttribute(new Orders());
-		//model.addAttribute("catalogList",catalogService.getCatalogs());
+	//	model.addAttribute("catalogList",catalogService.getCatalogs());
 		return "order/addOrder";
 	}
 	@RequestMapping(value="/add", method=RequestMethod.POST)
