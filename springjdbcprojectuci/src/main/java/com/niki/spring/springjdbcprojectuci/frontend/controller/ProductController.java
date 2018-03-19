@@ -49,6 +49,7 @@ public class ProductController {
 		List<Product> products = catalogService.getProducts();
 		model.addAttribute("productList", products);
 		//return new ModelAndView("product/productList");
+		//here check for available quantity>0 to dispaly only those products
 		model.addAttribute("selectedProducts", new Items());
 		return new ModelAndView("product/productList4");
 	}

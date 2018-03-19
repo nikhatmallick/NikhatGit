@@ -17,7 +17,7 @@
 				<br>
 			</c:forEach>
 		</div>
- 		<input type="submit" value="Purchase" />
+ 		<!--  <input type="submit" value="Purchase" />-->
 	</sf:form>
 	<br>
 	<a href="add.html">Add New</a>
