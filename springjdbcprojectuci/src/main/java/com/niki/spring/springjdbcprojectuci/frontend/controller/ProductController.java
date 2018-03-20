@@ -1,5 +1,6 @@
 package com.niki.spring.springjdbcprojectuci.frontend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -45,11 +46,20 @@ public class ProductController {
 	//product purchase
 	@RequestMapping("/listProducts2Purchase")
 	public ModelAndView productList4(Model model) {
+		ArrayList<Product> available_prod_list = new ArrayList<Product>();
 		System.out.println("======= in productList");
 		List<Product> products = catalogService.getProducts();
-		model.addAttribute("productList", products);
+	//	model.addAttribute("productList", products);
 		//return new ModelAndView("product/productList");
 		//here check for available quantity>0 to dispaly only those products
+		for(int i=0; i<products.size();i++) {
+			if(products.get(i).getAvailable_quantity()>0) {
+				System.out.println("people should buy this as htis is available: "+ 
+			products.get(i).getAvailable_quantity()+ " "+ products.get(i).getProduct_name());
+				available_prod_list.add(products.get(i));
+			}
+		}
+		model.addAttribute("productList", available_prod_list);
 		model.addAttribute("selectedProducts", new Items());
 		return new ModelAndView("product/productList4");
 	}
